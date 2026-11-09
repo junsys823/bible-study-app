@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>聖經研讀 · 和合本</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- VIEW 1: Main Catalog (Old / New Testament, Daily Prayer, Bookmarks, Search) -->
+    <main id="viewCatalog" class="view-panel active">
+      <!-- App Header for Catalog -->
+      <header class="app-header">
+        <div class="header-left">
+          <span class="app-title" id="appMainTitle">圣经研读 · 和合本</span>
+          <span class="app-version-badge" id="appVersionBadge">v1.2</span>
+        </div>
+        <div class="header-right">
+          <button class="lang-btn" id="catalogLangBtn" onclick="toggleLanguage()" title="切换语言 (简/繁/EN)">简</button>
+          <button class="font-btn" onclick="adjustFontSize(-1.5)" title="缩小字体">A-</button>
+          <button class="font-btn" onclick="adjustFontSize(1.5)" title="放大字体">A+</button>
+          <button class="exit-btn" id="appExitBtn" onclick="exitApp()" title="退出应用">⏻</button>
+        </div>
+      </header>
+
+      <!-- Continue Reading Card -->
+      <div id="continueCard" class="continue-card hidden" onclick="resumeLastRead()">
+        <div class="continue-badge" id="continueBadge">📖 继续上次阅读</div>
+        <div class="continue-title" id="lastReadText">—</div>
+        <div class="continue-arrow" id="continueArrow">点击继续 ➔</div>
+      </div>
+
+      <!-- Main Navigation Tabs (5 Tabs) -->
+      <nav class="main-tabs">
+        <button class="tab-btn active" id="tabOT" data-tab="ot" onclick="switchTab('ot')">旧约全书 (39)</button>
+        <button class="tab-btn" id="tabNT" data-tab="nt" onclick="switchTab('nt')">新约全书 (27)</button>
+        <button class="tab-btn" id="tabPrayer" data-tab="prayer" onclick="switchTab('prayer')">每日祷告 (🙏)</button>
+        <button class="tab-btn" id="tabBM" data-tab="bm" onclick="switchTab('bm')">书签 (🔖)</button>
+        <button class="tab-btn" id="tabSearch" data-tab="search" onclick="switchTab('search')">搜索 (🔍)</button>
+      </nav>
+
+      <!-- OT Content -->
+      <section id="panelOT" class="tab-content active">
+        <div id="otSectionsContainer"></div>
+      </section>
+
+      <!-- NT Content -->
+      <section id="panelNT" class="tab-content">
+        <div id="ntSectionsContainer"></div>
+      </section>
+
+      <!-- NEW: Daily Prayer Guide Content (7 Steps) -->
+      <section id="panelPrayer" class="tab-content">
+        <!-- Sub Step Navigation Bar -->
+        <div class="prayer-step-nav" id="prayerStepNav"></div>
+        <!-- Active Prayer Step Content Container -->
+        <div id="prayerStepContent" class="prayer-step-content"></div>
+      </section>
+
+      <!-- Bookmarks Content -->
+      <section id="panelBM" class="tab-content">
+        <div class="section-title" id="bmSectionTitle">我的圣经书签</div>
+        <div id="bookmarksList" class="bookmarks-list"></div>
+      </section>
+
+      <!-- Search Content -->
+      <section id="panelSearch" class="tab-content">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="搜索经文关键字 (例如：爱、起初、信心)..." onkeydown="if(event.key==='Enter') executeSearch()" />
+          <button class="search-btn" id="searchSubmitBtn" onclick="executeSearch()">搜索</button>
+        </div>
+        <div id="searchResults" class="search-results"></div>
+      </section>
+    </main>
+
+    <!-- VIEW 2: Chapter Selector -->
+    <main id="viewChapters" class="view-panel">
+      <header class="app-header">
+        <div class="header-left">
+          <button class="icon-btn" id="chapBackBtn" onclick="showView('catalog')" title="返回目录">← 目录</button>
+          <span class="app-title" id="chapBookTitle">—</span>
+        </div>
+        <div class="header-right">
+          <button class="lang-btn" id="chapLangBtn" onclick="toggleLanguage()" title="切换语言 (简/繁/EN)">简</button>
+          <button class="font-btn" onclick="adjustFontSize(-1.5)">A-</button>
+          <button class="font-btn" onclick="adjustFontSize(1.5)">A+</button>
+        </div>
+      </header>
+
+      <div class="book-info-banner">
+        <p id="chapBookSub" class="chap-book-sub">—</p>
+      </div>
+      <div class="section-title" id="selectChapTitle">选择章节：</div>
+      <div id="chapterGrid" class="chapter-grid"></div>
+    </main>
+
+    <!-- VIEW 3: Paginated Scripture Reader (Book Style) -->
+    <main id="viewReader" class="view-panel reader-mode">
+      <!-- Toggleable Top Header Bar -->
+      <header id="readerHeader" class="reader-header-bar">
+        <div class="header-left">
+          <button class="icon-btn" id="readerBackBtn" onclick="openChapterSelector()" title="返回选章">← 章节</button>
+          <span id="readerTopTitle" class="reader-top-title">—</span>
+        </div>
+        <div class="header-right">
+          <button class="lang-btn" id="readerLangBtn" onclick="toggleLanguage()" title="切换语言 (简/繁/EN)">简</button>
+          <button id="btnBookmarkPage" class="font-btn" onclick="bookmarkCurrentPage()">🔖 书签</button>
+          <button class="font-btn" onclick="adjustFontSize(-1.5)">A-</button>
+          <button class="font-btn" onclick="adjustFontSize(1.5)">A+</button>
+        </div>
+      </header>
+
+      <!-- Tap Areas & Paginated Viewport -->
+      <div id="readerViewport" class="reader-viewport">
+        <!-- Invisible Touch Zones for Left/Right Page Turn -->
+        <div class="touch-zone touch-left" onclick="prevPage()" title="上一页"></div>
+        <div class="touch-zone touch-center" onclick="toggleReaderControls()" title="菜单"></div>
+        <div class="touch-zone touch-right" onclick="nextPage()" title="下一页"></div>
+
+        <!-- Multi-column Paginated Content -->
+        <div id="readerContent" class="reader-content"></div>
+      </div>
+
+      <!-- Bottom Status & Page Indicator (Always visible, book style) -->
+      <footer id="readerFooterInfo" class="reader-footer-info">
+        <span id="readerInfoBook" class="footer-book-text">—</span>
+        <span id="readerInfoPage" class="footer-page-text">第 1 / 1 页</span>
+      </footer>
+
+      <!-- Toggleable Bottom Chapter Nav Bar -->
+      <footer id="readerBottomBar" class="reader-bottom-bar hidden">
+        <button class="nav-btn" id="readerPrevChapBtn" onclick="navChapter(-1)">◀ 上一章</button>
+        <button class="nav-btn" id="readerCatalogBtn" onclick="openChapterSelector()">选章目录</button>
+        <button class="nav-btn" id="readerNextChapBtn" onclick="navChapter(1)">下一章 ▶</button>
+      </footer>
+    </main>
+  </div>
+
+  <script src="prayer_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

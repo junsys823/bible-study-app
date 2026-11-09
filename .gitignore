@@ -1,0 +1,26 @@
+# Build outputs and intermediate files
+outputs/
+work/
+build/
+.gradle/
+*.class
+*.dex
+*.apk
+*.aab
+
+# Keystores & credentials
+*.keystore
+*.jks
+
+# IDE & Editor files
+.idea/
+*.iml
+.vscode/
+local.properties
+.gradle/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+*.swp
+*~

@@ -101,9 +101,9 @@ function updateLanguageUI() {
   // App header titles
   const mainTitle = document.getElementById('appMainTitle');
   if (mainTitle) {
-    if (isEn) mainTitle.textContent = 'Bible Study · KJV';
-    else if (isSc) mainTitle.textContent = '圣经研读 · 和合本';
-    else mainTitle.textContent = '聖經研讀 · 和合本';
+    if (isEn) mainTitle.textContent = 'Holy Bible & Prayer';
+    else if (isSc) mainTitle.textContent = '圣经与每日祷告';
+    else mainTitle.textContent = '聖經與每日禱告';
   }
 
   // Compact exit button with universal symbol

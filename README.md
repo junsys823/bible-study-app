@@ -1,17 +1,17 @@
-# 📖 Bible Study E-Reader (圣经研读 · 和合本 / KJV)
+# 📖 Holy Bible & Prayer (圣经与每日祷告 · 和合本 / KJV)
 
 <div align="center">
 
-[![Release](https://img.shields.io/github/v/release/junsys823/bible-study-app?color=brightgreen&label=Release)](https://github.com/junsys823/bible-study-app/releases/latest)
-[![Download APK](https://img.shields.io/badge/Direct%20Download-APK%20(v1.2.0)-blue?logo=android)](https://github.com/junsys823/bible-study-app/releases/download/v1.2.0/Bible-Study.apk)
+[![Release](https://img.shields.io/github/v/release/junsys823/bible-prayer-ereader?color=brightgreen&label=Release)](https://github.com/junsys823/bible-prayer-ereader/releases/latest)
+[![Download APK](https://img.shields.io/badge/Direct%20Download-APK%20(v1.2.0)-blue?logo=android)](https://github.com/junsys823/bible-prayer-ereader/releases/download/v1.2.0/Bible-Study.apk)
 [![Android](https://img.shields.io/badge/Android-8.0%2B%20(API%2026%2B)-success.svg)](https://developer.android.com)
 [![Device](https://img.shields.io/badge/E--ink-Optimized-orange.svg)](#-pixel-perfect-e-ink-experience)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Stars](https://img.shields.io/github/stars/junsys823/bible-study-app?style=social)](https://github.com/junsys823/bible-study-app)
+[![Stars](https://img.shields.io/github/stars/junsys823/bible-prayer-ereader?style=social)](https://github.com/junsys823/bible-prayer-ereader)
 
 **A high-contrast, zero-latency, offline Bible study and daily prayer app meticulously engineered for Android E-ink readers and tablets.**
 
-[📥 Download Latest APK (v1.2.0)](https://github.com/junsys823/bible-study-app/releases/download/v1.2.0/Bible-Study.apk) · [🌟 Star on GitHub](https://github.com/junsys823/bible-study-app) · [💬 Report Issue](https://github.com/junsys823/bible-study-app/issues)
+[📥 Download Latest APK (v1.2.0)](https://github.com/junsys823/bible-prayer-ereader/releases/download/v1.2.0/Bible-Study.apk) · [🌟 Star on GitHub](https://github.com/junsys823/bible-prayer-ereader) · [💬 Report Issue](https://github.com/junsys823/bible-prayer-ereader/issues)
 
 </div>
 
@@ -24,7 +24,7 @@ Most existing Bible apps are built for LCD/OLED mobile phones with colorful anim
 - ❌ Distracting multi-column peeking or chopped sentences on page boundaries.
 - ❌ High battery drain and intrusive network trackers.
 
-**Bible Study E-Reader solves this completely:**
+**Holy Bible & Prayer solves this completely:**
 - ✅ **Real Book Paginated Engine**: Renders text into pure horizontal book pages with zero column peeking and continuous sentence flow.
 - ✅ **Hardware Button Page Turns**: Turn pages with physical side buttons (`Volume Up/Down`, `Page Up/Down`) or invisible screen-edge touch zones.
 - ✅ **100% Offline & Lightweight**: Embedded 12.7 MB SQLite database containing 31,099 verses across 3 translations. No account, no internet, zero tracking.
@@ -98,13 +98,13 @@ com.bible.study.cuv/
 ## 🚀 Quick Start / How to Build
 
 ### Option 1: Install Pre-built APK (Fastest)
-1. Download [`Bible-Study.apk`](https://github.com/junsys823/bible-study-app/releases/download/v1.2.0/Bible-Study.apk) directly from the Releases page.
+1. Download [`Bible-Study.apk`](https://github.com/junsys823/bible-prayer-ereader/releases/download/v1.2.0/Bible-Study.apk) directly from the Releases page.
 2. Sideload onto your E-reader via USB or file manager and click install.
 
 ### Option 2: Fast CLI Build (Zero Gradle Dependencies)
 ```bash
-git clone https://github.com/junsys823/bible-study-app.git
-cd bible-study-app
+git clone https://github.com/junsys823/bible-prayer-ereader.git
+cd bible-prayer-ereader
 chmod +x build_apk.sh
 ./build_apk.sh
 ```
@@ -170,7 +170,7 @@ CREATE TABLE last_read (
 
 Contributions, feature requests, and bug reports are warmly welcome!
 - Give a ⭐️ star if this project helps your spiritual reading journey!
-- Open an [Issue](https://github.com/junsys823/bible-study-app/issues) for feedback or device testing reports.
+- Open an [Issue](https://github.com/junsys823/bible-prayer-ereader/issues) for feedback or device testing reports.
 
 ---
 
